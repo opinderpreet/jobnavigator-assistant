@@ -3,25 +3,35 @@ import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 // This component will act as a router to direct users to the appropriate starting page
-// For a real app, this would check if the user has any job agents already
 const Index = () => {
   const navigate = useNavigate();
   
+  // Mock function to check if user is authenticated
+  const isAuthenticated = () => {
+    // For demo purposes, return false to simulate a non-authenticated user
+    return false;
+  };
+  
   // Mock function to check if user has existing job agents
-  // In a real app, this would be an API call or check local storage
   const hasExistingJobAgents = () => {
     // For demo purposes, we'll return false to simulate a first-time user
     return false;
   };
   
   useEffect(() => {
-    // Check if user has existing job agents
-    if (hasExistingJobAgents()) {
-      // Returning user - redirect to dashboard
-      navigate('/dashboard');
+    // Check if user is authenticated
+    if (!isAuthenticated()) {
+      // Not authenticated - redirect to signup
+      navigate('/signup');
     } else {
-      // First-time user - redirect to create job agent
-      navigate('/create-job-agent');
+      // Check if user has existing job agents
+      if (hasExistingJobAgents()) {
+        // Returning user - redirect to dashboard
+        navigate('/dashboard');
+      } else {
+        // First-time user - redirect to create job agent
+        navigate('/create-job-agent');
+      }
     }
   }, [navigate]);
   

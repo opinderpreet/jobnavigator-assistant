@@ -1,12 +1,13 @@
 
 import React, { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import MainLayout from '@/components/layout/MainLayout';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CheckCircle, Clock, ExternalLink, Download, ThumbsUp, ThumbsDown, X } from 'lucide-react';
+import { CheckCircle, Clock, ExternalLink, Download, X, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const JobHistory = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const defaultTab = searchParams.get('tab') || 'applied';
   
@@ -88,11 +89,11 @@ const JobHistory = () => {
             <div className="glass-card overflow-hidden rounded-2xl divide-y divide-border">
               <div className="bg-secondary/50 px-6 py-4">
                 <div className="grid grid-cols-12 text-sm font-medium text-muted-foreground">
-                  <div className="col-span-3">Company & Position</div>
+                  <div className="col-span-4">Company & Position</div>
                   <div className="col-span-2">Current Score</div>
                   <div className="col-span-2">Optimized Score</div>
                   <div className="col-span-2">Resume Version</div>
-                  <div className="col-span-3">Actions</div>
+                  <div className="col-span-2">Actions</div>
                 </div>
               </div>
               
@@ -100,7 +101,7 @@ const JobHistory = () => {
                 {reviewJobs.map((job, index) => (
                   <div key={index} className="px-6 py-4 hover:bg-secondary/30 transition-colors">
                     <div className="grid grid-cols-12 items-center">
-                      <div className="col-span-3">
+                      <div className="col-span-4">
                         <p className="font-medium">{job.title}</p>
                         <p className="text-sm text-muted-foreground">{job.company}</p>
                       </div>
@@ -117,15 +118,23 @@ const JobHistory = () => {
                       <div className="col-span-2 text-sm">
                         {job.resumeVersion}
                       </div>
-                      <div className="col-span-3 flex space-x-2">
-                        <Button variant="outline" size="sm">
+                      <div className="col-span-2 flex space-x-2">
+                        <Button 
+                          variant="default" 
+                          size="sm"
+                          className="flex items-center gap-1"
+                          onClick={() => navigate(`/job-review/${index + 1}`)}
+                        >
+                          <Eye className="h-3.5 w-3.5" />
                           Review
                         </Button>
-                        <Button variant="default" size="icon" className="bg-green-500 hover:bg-green-600" title="Approve">
-                          <ThumbsUp className="h-4 w-4" />
-                        </Button>
-                        <Button variant="default" size="icon" className="bg-red-500 hover:bg-red-600" title="Reject">
-                          <ThumbsDown className="h-4 w-4" />
+                        <Button 
+                          variant="outline" 
+                          size="icon" 
+                          className="text-red-500 hover:text-red-600 hover:border-red-200 hover:bg-red-50"
+                          title="Reject"
+                        >
+                          <X className="h-4 w-4" />
                         </Button>
                       </div>
                     </div>
