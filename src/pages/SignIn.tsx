@@ -19,7 +19,9 @@ const SignIn = () => {
       <div className="w-full max-w-md">
         <div className="mb-10 text-center">
           <Link to="/" className="inline-block">
-            <img src="/lovable-uploads/04ff9bf4-9b18-4158-8fc0-5e1b4bfa29f6.png" alt="Logo" className="h-10 w-10" />
+            <div className="h-10 w-10 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold">
+              A
+            </div>
           </Link>
         </div>
         
@@ -109,7 +111,7 @@ const SignIn = () => {
         
         <div className="mt-8 flex justify-between text-sm text-gray-500">
           <div className="flex items-center">
-            <img src="/lovable-uploads/04ff9bf4-9b18-4158-8fc0-5e1b4bfa29f6.png" alt="AutoApply Logo" className="h-6 w-6 mr-2" />
+            <div className="h-6 w-6 bg-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2">A</div>
             <span>AutoApply</span>
           </div>
           <div>
