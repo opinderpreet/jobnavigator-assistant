@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import MainLayout from '@/components/layout/MainLayout';
@@ -21,7 +20,6 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 
-// Mocked job for this example
 const mockJob = {
   id: "1",
   company: "Airbnb",
@@ -69,7 +67,6 @@ Skills:
 - AWS, RESTful APIs, GraphQL`
 };
 
-// Highlighted changes data for the example
 const highlightedChanges = [
   { id: 1, original: "Software Engineer at XYZ Company (2018-Present)", optimized: "Software Engineer at XYZ Company (2018-Present)\n  • Developed and maintained React-based web applications\n  • Implemented RESTful APIs using Node.js and Express\n  • Deployed applications on AWS infrastructure", reason: "Added specific achievements that match the job requirements" },
   { id: 2, original: "Junior Developer at ABC Corp (2016-2018)", optimized: "Junior Developer at ABC Corp (2016-2018)\n  • Worked on JavaScript/TypeScript projects\n  • Built responsive UIs with React components", reason: "Added relevant experience with technologies mentioned in the job description" },
@@ -86,7 +83,6 @@ const JobReview = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [promptInput, setPromptInput] = useState("");
   
-  // Alert dialog states
   const [showApproveDialog, setShowApproveDialog] = useState(false);
   const [showRejectDialog, setShowRejectDialog] = useState(false);
   const [showCancelDialog, setShowCancelDialog] = useState(false);
@@ -95,15 +91,12 @@ const JobReview = () => {
   const handlePromptSubmit = () => {
     if (!promptInput.trim()) return;
     
-    // Simulate AI enhancement based on prompt
     toast({
       title: "AI Enhancing Resume",
       description: "Processing your enhancement request...",
     });
     
-    // Simulate processing delay
     setTimeout(() => {
-      // Simulate improved resume and score
       const newScore = Math.min(99, score + Math.floor(Math.random() * 5) + 1);
       setScore(newScore);
       setResume(resume + "\n\n" + promptInput.trim());
@@ -112,7 +105,7 @@ const JobReview = () => {
       toast({
         title: "Resume Enhanced",
         description: `Resume has been optimized. New ATS Score: ${newScore}%`,
-        variant: "success",
+        variant: "default",
       });
     }, 1500);
   };
@@ -121,7 +114,7 @@ const JobReview = () => {
     toast({
       title: "Application Submitted",
       description: "Your job application has been successfully submitted.",
-      variant: "success",
+      variant: "default",
     });
     navigate("/job-history?tab=applied");
   };
@@ -338,7 +331,6 @@ const JobReview = () => {
         </div>
       </div>
       
-      {/* Approve Dialog */}
       <AlertDialog open={showApproveDialog} onOpenChange={setShowApproveDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -350,13 +342,13 @@ const JobReview = () => {
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleApprove} className="bg-green-600 hover:bg-green-700">
-              Submit Application
+              <CheckCircle className="h-4 w-4 mr-2" />
+              Approve
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
       
-      {/* Reject Dialog */}
       <AlertDialog open={showRejectDialog} onOpenChange={setShowRejectDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>
@@ -368,13 +360,13 @@ const JobReview = () => {
           <AlertDialogFooter>
             <AlertDialogCancel>Cancel</AlertDialogCancel>
             <AlertDialogAction onClick={handleReject} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+              <ThumbsDown className="h-4 w-4 mr-2" />
               Reject Application
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
       
-      {/* Cancel Dialog */}
       <AlertDialog open={showCancelDialog} onOpenChange={setShowCancelDialog}>
         <AlertDialogContent>
           <AlertDialogHeader>

@@ -29,7 +29,7 @@ const SignUp = () => {
         </div>
         
         <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
-          <h1 className="text-2xl font-bold text-center mb-8">Sign up to Qwen</h1>
+          <h1 className="text-2xl font-bold text-center mb-8">Sign up to AutoApply</h1>
           
           <form className="space-y-4">
             <div className="relative">
@@ -141,8 +141,8 @@ const SignUp = () => {
         
         <div className="mt-8 flex justify-between text-sm text-gray-500">
           <div className="flex items-center">
-            <img src="/lovable-uploads/04ff9bf4-9b18-4158-8fc0-5e1b4bfa29f6.png" alt="Qwen Logo" className="h-6 w-6 mr-2" />
-            <span>Qwen</span>
+            <img src="/lovable-uploads/04ff9bf4-9b18-4158-8fc0-5e1b4bfa29f6.png" alt="AutoApply Logo" className="h-6 w-6 mr-2" />
+            <span>AutoApply</span>
           </div>
           <div>
             copyright © 2025

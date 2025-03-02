@@ -1,10 +1,18 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import MainLayout from '@/components/layout/MainLayout';
 import { FileText, ExternalLink, Download, Edit, Trash, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const ResumeLibrary = () => {
+  const navigate = useNavigate();
+  
+  // Function to navigate to job history with the applied tab selected and potentially filtered by resume
+  const viewApplications = (resumeId: number) => {
+    navigate(`/job-history?tab=applied&resumeId=${resumeId}`);
+  };
+  
   return (
     <MainLayout>
       <div className="space-y-8 animate-fade-in">
@@ -80,9 +88,13 @@ const ResumeLibrary = () => {
                   <Download className="h-4 w-4 mr-2" />
                   Download
                 </Button>
-                <Button variant="outline" className="flex-1">
+                <Button 
+                  variant="outline" 
+                  className="flex-1"
+                  onClick={() => viewApplications(index + 1)}
+                >
                   <ExternalLink className="h-4 w-4 mr-2" />
-                  View Apps
+                  View Applications
                 </Button>
               </div>
             </div>
